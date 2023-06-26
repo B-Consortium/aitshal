@@ -17,14 +17,14 @@ CFLAGS ?= -Wextra -Wall -O2
 
 .PHONY: all install uninstall clean
 
-aitshal: $(OBJ)/aitshal.o | $(BIN)
+aitshal: $(OBJ)/functions.o $(OBJ)/aitshal.o | $(BIN)
 	$(CC) $(CFLAGS) -o $(BIN)/$@ $^
 
 all: aitshal
 
 all-ncurses: aitshal-ncurses
 
-aitshal-ncurses: $(OBJ)/aitshal.o | $(BIN)
+aitshal-ncurses: $(OBJ)/functions.o $(OBJ)/aitshal.o | $(BIN)
 	$(CC) $(CFLAGS) -o $(BIN)/aitshal $^ -lncursesw
 
 $(OBJ)/%.o: $(SRC)/%.c | $(OBJ)
