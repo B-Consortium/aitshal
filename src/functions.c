@@ -73,7 +73,7 @@ void executeFiglet(const char* inputString) {
 
     // Check the return value of system() for any errors
     if (status == 0) {
-        system("clear");
+        
     } else {
         printf("figlet command failed with error code %d\n", status);
     }
