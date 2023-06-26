@@ -64,7 +64,7 @@ int repositoryExists(const char* repository) {
 void executeFiglet(const char* inputString) {
     // Construct the command string
     const char* figletCmd = "figlet";
-    size_t cmdLength = strlen(figletCmd) + strlen(inputString) + 3;
+    size_t cmdLength = strlen(figletCmd) + strlen(inputString) + 4;
     char* command = (char*)malloc(cmdLength);
     snprintf(command, cmdLength, "%s \"%s\"", figletCmd, inputString);
 
@@ -73,9 +73,9 @@ void executeFiglet(const char* inputString) {
 
     // Check the return value of system() for any errors
     if (status == 0) {
-        printf("Figlet command executed successfully!\n");
+        printf("figlet command executed successfully!\n");
     } else {
-        printf("Figlet command failed with error code %d\n", status);
+        printf("figlet command failed with error code %d\n", status);
     }
 
     // Free the allocated memory
