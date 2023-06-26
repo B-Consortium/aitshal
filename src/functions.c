@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <curl/curl.h>
 
 void gitClone(const char* inputString) {
     // Construction of the command string
@@ -22,3 +23,41 @@ void gitClone(const char* inputString) {
     // Free the allocated memory
     free(command);
 }
+
+int repositoryExists(const char* repository) {
+    CURL* curl = curl_easy_init();
+    if (curl) {
+        // Construct the URL
+        size_t urlLength = strlen("https://github.com/B-Consortium/") + strlen(repository) + 1;
+        char* url = (char*)malloc(urlLength);
+        snprintf(url, urlLength, "https://github.com/B-Consortium/%s", repository);
+
+        // Set the request URL
+        curl_easy_setopt(curl, CURLOPT_URL, url);
+        // Follow redirects
+        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+        // Disable output to stdout
+        curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);
+
+        // Perform the request
+        CURLcode res = curl_easy_perform(curl);
+
+        // Clean up the CURL handle
+        curl_easy_cleanup(curl);
+
+        // Check for errors and the existence of the repository
+        if (res == CURLE_OK) {
+            long httpCode;
+            curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &httpCode);
+
+            if (httpCode == 200) {
+                return 1;
+            }
+        }
+
+        // Free allocated memory
+        free(url);
+    }
+    return 0;
+}
+
