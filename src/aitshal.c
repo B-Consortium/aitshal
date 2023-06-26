@@ -12,11 +12,17 @@ int main(int argc, char* argv[]) {
 
     char* repository = argv[1];
     executeFiglet("Thanks for using aitshal!");
+    executeFiglet("------------------------------------");
     executeFiglet("This command is held by B-Consortium");
-
+    executeFiglet("------------------------------------");
+    sleep(3);
+    system("clear");
     if (repositoryExists(repository)) {
         executeFiglet("Downloading Output");
+        sleep(3);
         gitClone(repository);
+        sleep(2);
+        system("clear");
         executeFiglet("Installation Output");
     } else {
         executeFiglet("Whoops! Does not exist");
