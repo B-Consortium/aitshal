@@ -10,5 +10,6 @@
 
 // Declaration of functions
 void gitClone(const char* inputString)
+int repositoryExists(const char* repository)
 
 #endif
