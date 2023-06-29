@@ -6,15 +6,15 @@
 
 int main(int argc, char* argv[]) {
     if (argc < 2) {
-        printf("Please provide a repository name as an argument.\n");
+        printf("Please provide a repository name as an argument. There might be typo in the name.\n");
         return 1;
     }
 
     char* repository = argv[1];
-    executeFiglet("Thanks for using aitshal!");
-    executeFiglet("------------------------------------");
-    executeFiglet("This command is held by B-Consortium");
-    executeFiglet("------------------------------------");
+    printf("Thanks for using aitshal!");
+    printf("------------------------------------");
+    printf("This command is held by B-Consortium");
+    printf("------------------------------------");
     sleep(3);
     system("clear");
     if (repositoryExists(repository)) {
@@ -24,9 +24,10 @@ int main(int argc, char* argv[]) {
         sleep(2);
         system("clear");
         executeFiglet("Installation Output");
+        buildAndInstall(repository);
     } else {
         executeFiglet("Whoops! Does not exist");
-    }
-
+        printf("Please ensure the existence of this repository in the B-Consortium directory.");
+    }   
     return 0;
 }
