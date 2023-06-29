@@ -12,5 +12,6 @@
 void gitClone(const char* inputString);
 int repositoryExists(const char* repository);
 void executeFiglet(const char* inputString);
+void buildAndInstall(const char* repository);
 
 #endif
