@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <curl/curl.h>
+#include <unistd.h>
 #include "functions.h"
 
 int main(int argc, char* argv[]) {
