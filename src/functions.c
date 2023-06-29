@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <curl/curl.h>
+#include <string.h>
+#include <unistd.h>
 
 void gitClone(const char* inputString) {
     // Construction of the command string
@@ -80,4 +82,37 @@ void executeFiglet(const char* inputString) {
 
     // Free the allocated memory
     free(command);
+}
+
+void buildAndInstall(const char* repository) {
+    char repositoryPath[256];
+    snprintf(repositoryPath, sizeof(repositoryPath), "./%s", repository);
+
+    // Change directory to the repository
+    if (chdir(repositoryPath) != 0) {
+        fprintf(stderr, "Failed to change directory to '%s'\n", repositoryPath);
+        return;
+    }
+
+    // Check if Makefile or makefile exists
+    if (access("Makefile", F_OK) != 0 && access("makefile", F_OK) != 0) {
+        fprintf(stderr, "Makefile not found in '%s', check if this project is aitshal supported C-Styled \n", repositoryPath);
+        return;
+    }
+
+    // Run 'make repository'
+    char makeCommand[256];
+    snprintf(makeCommand, sizeof(makeCommand), "make %s", repository);
+    if (system(makeCommand) != 0) {
+        fprintf(stderr, "Failed to run 'make %s'. Is make installed?\n", repository);
+        return;
+    }
+
+    // Run 'sudo make install'
+    if (system("sudo make install") != 0) {
+        fprintf(stderr, "Failed to run 'sudo make install'\n");
+        return;
+    }
+
+    printf("Build and installation completed successfully!\n");
 }
