@@ -12,9 +12,9 @@ int main(int argc, char* argv[]) {
 
     char* repository = argv[1];
     printf("Thanks for using aitshal!");
-    printf("------------------------------------");
-    printf("This command is held by B-Consortium");
-    printf("------------------------------------");
+    printf("------------------------------------\n");
+    printf("This command is held by B-Consortium\n");
+    printf("------------------------------------\n");
     sleep(3);
     system("clear");
     if (repositoryExists(repository)) {
