@@ -40,9 +40,18 @@ flowchart TD
     printFigletMessage --> freeCmdMem[Free memory for command]
     end
 
+    subgraph buildAndInstall
+    start --> changeDir[Change directory to 'repository']
+    changeDir --> checkMakefile[Check if Makefile exists]
+    checkMakefile --> runMake[Run 'make repository']
+    runMake --> runSudoMakeInstall[Run 'sudo make install']
+    runSudoMakeInstall --> printSuccess[Print build and installation success]
+    end
+
 start --> gitClone
 start --> repositoryExists
 start --> executeFiglet
+start -->buildAndInstall
 ```
 
 ## Installation 
