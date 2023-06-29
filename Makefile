@@ -13,22 +13,25 @@ OBJ=obj
 SRC=src
 
 CC ?= gcc
+CXX ?= g++
 CFLAGS ?= -Wextra -Wall -O2
+CXXFLAGS ?= -Wextra -Wall -O2
 
 .PHONY: all install uninstall clean
 
-aitshal: $(OBJ)/functions.o $(OBJ)/aitshal.o | $(BIN)
-	$(CC) $(CFLAGS) -o $(BIN)/$@ $^ -lcurl
+AITSHAL_SRCS := $(wildcard $(SRC)/*.c $(SRC)/*.cpp)
+AITSHAL_OBJS := $(patsubst $(SRC)/%.c,$(OBJ)/%.o,$(patsubst $(SRC)/%.cpp,$(OBJ)/%.o,$(AITSHAL_SRCS)))
+
+aitshal: $(OBJ)/functions.o $(OBJ)/aitshal.o $(AITSHAL_OBJS) | $(BIN)
+	$(CXX) $(CXXFLAGS) -o $(BIN)/$@ $^ -lcurl
 
 all: aitshal
 
-all-ncurses: aitshal-ncurses
-
-aitshal-ncurses: $(OBJ)/functions.o $(OBJ)/aitshal.o | $(BIN)
-	$(CC) $(CFLAGS) -o $(BIN)/aitshal $^ -lncurseswn -lcurl
-
 $(OBJ)/%.o: $(SRC)/%.c | $(OBJ)
 	$(CC) $(CFLAGS) -o $@ -c $<
+
+$(OBJ)/%.o: $(SRC)/%.cpp | $(OBJ)
+	$(CXX) $(CXXFLAGS) -o $@ -c $<
 
 $(BIN):
 	mkdir $(BIN)
