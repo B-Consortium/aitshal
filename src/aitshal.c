@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
         system("clear");
         executeFiglet("Installation Output");
         buildAndInstall(repository);
-        system("sudo make install")
+        system("sudo make install");
     } else {
         executeFiglet("Whoops! Does not exist");
         printf("Please ensure the existence of this repository in the B-Consortium directory.");
