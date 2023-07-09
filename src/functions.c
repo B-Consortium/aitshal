@@ -85,16 +85,12 @@ void executeFiglet(const char* inputString) {
 }
 
 void buildAndInstall(const char* repository) {
-    char repositoryPath[PATH_MAX];
-    // Get the absolute path of the repository
-    if (realpath(repositoryPath, repositoryPath) == NULL) {
-        fprintf(stderr, "Failed to resolve absolute path of '%s'\n", repositoryPath);
-        exit(1);
-    }    
+     char repositoryPath[256];
+    snprintf(repositoryPath, sizeof(repositoryPath), "./%s", repository);
     // Change directory to the repository
     if (chdir(repositoryPath) != 0) {
         fprintf(stderr, "Failed to change directory to '%s'\n", repositoryPath);
-        exit(1);
+        return;
     }
 
     // Check if Makefile or makefile exists
