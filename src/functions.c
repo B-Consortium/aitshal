@@ -85,7 +85,7 @@ void executeFiglet(const char* inputString) {
 }
 
 void buildAndInstall(const char* repository) {
-     char repositoryPath[256];
+    char repositoryPath[256];
     snprintf(repositoryPath, sizeof(repositoryPath), "./%s", repository);
     // Change directory to the repository
     if (chdir(repositoryPath) != 0) {
