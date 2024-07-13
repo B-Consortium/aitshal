@@ -1,0 +1,6 @@
+Version 0.0.1
+=============
+ [-] Added support to C-Styled projects
+ [-] Verification checks for missing ``make``
+ [-] In-built detection of project being C-styled
+ [-] Enforced repository to be in scope: https://github.com/B-Consortium/*
