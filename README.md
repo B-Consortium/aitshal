@@ -53,7 +53,7 @@ start --> repositoryExists
 start --> executeFiglet
 start -->buildAndInstall
 ```
-
+These stages were the initial plans for aitshal and can be outdated.
 ## Installation 
 ``aitshal`` needs tools like ``gcc``, ``make``,``curl``,``openssl`` and tools to compile both ``make`` and C projects. In that scenario, we can begin like:
 
