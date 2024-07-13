@@ -11,6 +11,15 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
+    if (strcmp(argv[1], "--about") == 0) {
+        printf("Tool: aitshal");
+        printf("\n \n");
+        printf("An invention of Research, Provisions, Successors, and the Member of the Broke Consortium.");
+        printf("This tool is to be identified as the provision under Broke Consortium's chartered OpenRights.");
+        printf("[-] aitshal is the standard package installer for C-Styled projects ");
+        printf("[-] aitshal is the first tool developed by the consortium and its development plans were classified till the consortium built online presence");
+        return 0;
+    }
     char* repository = argv[1];
     printf("Thanks for using aitshal!");
     printf("------------------------------------\n");
